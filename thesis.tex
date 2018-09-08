@@ -1,0 +1,93 @@
+% Bournemouth University PhD Thesis Template by Daniel Green (@KasumiL5x).
+% 
+% This template is a modification of Cambridge's PhD thesis template.
+% It conforms to Bournemouth University's PhD thesis style as of 2018.
+% 
+% See the original README.md for information on how to use the template, including
+% the variety of options available for this document class.
+\documentclass[a4paper,12pt,times,numbered,print,index,oneside,custommargin]{PhDThesisPSnPDF}
+
+
+% ****************************** Preamble ******************************
+% Contains packages, user-defined commands, and settings.
+\input{preamble}
+
+
+% ****************************** Thesis Info ******************************
+% Various bits of information for the thesis, mostly relating to frontmatter.
+\input{front/thesis-info}
+
+
+% ****************************** Abstract Only ******************************
+% If using the 'abstract' document class option, only the titlepage and abstract will print out.
+% This section lets you include what is printed when this option is enabled.
+\ifdefineAbstract
+ \pagestyle{empty}
+ \includeonly{front/declaration, front/abstract}
+\fi
+
+
+% ****************************** Chapters Only ******************************
+% If using the 'chapter' document class option, only specific chapters and references are printed.
+% This section lets you include what is printed when this option is enabled.
+\ifdefineChapter
+ \includeonly{Chapter3/chapter3}
+\fi
+
+
+\begin{document}
+
+
+% ****************************** Front Matter ******************************
+% Everything before your actual work begins.  This follows Bournemouth's suggestion (which is not fixed).
+\frontmatter
+\maketitle
+\include{front/copyright} % Required by Bournemouth to come instantly after the titlepage.
+\include{front/abstract}
+\tableofcontents
+\listoffigures
+\listoftables
+\include{front/acknowledgement}
+\include{front/declaration}
+\printnomenclature % You can add spacing between symbols and descriptions using [3em] etc.
+\include{front/dedication}
+
+
+% ****************************** Main Matter ******************************
+% This is where your actual work starts.  \mainmatter sets everything up.  Include your chapters after this.
+\mainmatter
+
+\include{Chapter1/chapter1}
+\include{Chapter2/chapter2}
+\include{Chapter3/chapter3}
+
+
+% ****************************** Back Matter ******************************
+% This should remain commented out if you are using appendices after your references.
+% \backmatter
+
+
+% ****************************** Bibliography ******************************
+% This is where your references are configured and printed.
+\begin{spacing}{0.9}
+\bibliographystyle{apalike} % [1] etc.
+%\bibliographystyle{unsrt} % Use for unsorted references.
+%\bibliographystyle{plainnat} % Use this to have URLs listed in references.
+\cleardoublepage
+\bibliography{References/references} % Path to your References.bib file.
+\end{spacing}
+
+
+% ****************************** Appendices ******************************
+% Your extra appendices following references are listed here.
+\begin{appendices}
+\include{Appendix1/appendix1}
+\include{Appendix2/appendix2}
+\end{appendices}
+
+
+% ****************************** Index ******************************
+% If you have an index, print it here.
+\printthesisindex
+
+\end{document}
