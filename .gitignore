@@ -11,13 +11,11 @@
 *.blg*
 *~*
 *.nlo*
-*make*
 *.d*
 *.bcf*
 *.blg*
 *~*
 *.nlo*
-*make
 *.d
 *.btmp*
 *.fls*
