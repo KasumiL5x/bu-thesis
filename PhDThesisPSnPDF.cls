@@ -278,11 +278,11 @@ supported!}
   \RequirePackage[pdftex]{graphicx}
   \DeclareGraphicsExtensions{.png, .jpg, .pdf}
   \pdfcompresslevel=9
-  \graphicspath{{Figs/Raster/}{Figs/}}
+  \graphicspath{{figures/Raster/}{figures/}}
 \else
   \RequirePackage{graphicx}
   \DeclareGraphicsExtensions{.eps, .ps}
-  \graphicspath{{Figs/Vector/}{Figs/}}
+  \graphicspath{{figures/Vector/}{figures/}}
 \fi
 
 

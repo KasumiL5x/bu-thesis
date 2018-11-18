@@ -31,7 +31,7 @@
 % If using the 'chapter' document class option, only specific chapters and references are printed.
 % This section lets you include what is printed when this option is enabled.
 \ifdefineChapter
- \includeonly{Chapter3/chapter3}
+ \includeonly{chapter3/chapter3}
 \fi
 
 
@@ -57,9 +57,9 @@
 % This is where your actual work starts.  \mainmatter sets everything up.  Include your chapters after this.
 \mainmatter
 
-\include{Chapter1/chapter1}
-\include{Chapter2/chapter2}
-\include{Chapter3/chapter3}
+\include{chapter1/chapter1}
+\include{chapter2/chapter2}
+\include{chapter3/chapter3}
 
 
 % ****************************** Back Matter ******************************
@@ -74,15 +74,15 @@
 %\bibliographystyle{unsrt} % Use for unsorted references.
 %\bibliographystyle{plainnat} % Use this to have URLs listed in references.
 \cleardoublepage
-\bibliography{References/references} % Path to your References.bib file.
+\bibliography{references/references} % Path to your References.bib file.
 \end{spacing}
 
 
 % ****************************** Appendices ******************************
 % Your extra appendices following references are listed here.
 \begin{appendices}
-\include{Appendix1/appendix1}
-\include{Appendix2/appendix2}
+\include{appendix1/appendix1}
+\include{appendix2/appendix2}
 \end{appendices}
 
 
