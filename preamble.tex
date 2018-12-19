@@ -5,8 +5,10 @@
 % ****************************** Custom Margin ******************************
 % Use the document class option 'custommargin' to use this section.
 % Set {innerside, outerside, top, bottom} and other page dimensions.
+% Bournemouth standard is >=40mm for the bound edge and >=20mm for the rest.
+% If you use double sided printing, set the right to >=40mm too.
 \ifsetCustomMargin
-  \RequirePackage[left=40mm,right=25mm,top=35mm,bottom=30mm]{geometry}
+  \RequirePackage[left=40mm,right=20mm,top=20mm,bottom=20mm]{geometry} % originally 40/25/35/30
   \setFancyHdr % To apply fancy header after geometry package is loaded.
 \fi
 
@@ -69,14 +71,17 @@
 
 % \usepackage{rotating} % Rotation of figures and tables (https://ctan.org/pkg/rotating).
 % \usepackage{wrapfig} % Wrap text around figures and tables (https://ctan.org/pkg/wrapfig).
+
+% \usepackage{float} % Makes placing figures and tables easier.  In particular, [H] for exact placement (https://ctan.org/pkg/float).
+% \restylefloat{figure} % If you use the float package, enable this.
+
 \usepackage{subcaption} % Multiple captions within a figure (https://ctan.org/pkg/subcaption).
+
 \usepackage{booktabs} % Professional looking tables (https://ctan.org/pkg/booktabs).
 \usepackage{multirow} % Table cells that can span multiple rows (https://ctan.org/pkg/multirow).
 % \usepackage{multicol} % Table cells that can span multiple columns (https://ctan.org/pkg/multicol).
 % \usepackage{longtable} % Tables that can spread over multiple pages (https://ctan.org/pkg/longtable).
 % \usepackage{tabularx} % Extends tabular to include paragraph-like column expansion; tabulary also exists (https://ctan.org/pkg/tabularx).
-% \usepackage{float} % Makes placing figures and tables easier.  In particular, [H] for exact placement (https://ctan.org/pkg/float).
-% \restylefloat{figure} % If you use the float package, enable this.
 
 \usepackage{siunitx} % Ability to use SI unit symbols (https://ctan.org/pkg/siunitx).
 
