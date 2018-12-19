@@ -1007,6 +1007,18 @@ wish to left align your text}
 
 
 
+% ********************************* University Copyright *********************************
+% The copyright environment is for university-provided copyright pages.
+\newenvironment{unicopyright}
+{
+\cleardoublepage
+\setsinglecolumn
+\vspace*{0.2\textheight}
+\thispagestyle{empty}
+\centering
+}
+
+
 % ******************************* Declaration **********************************
 % The declaration environment puts a large, bold, centered
 % "Declaration" label at the top of the page.
