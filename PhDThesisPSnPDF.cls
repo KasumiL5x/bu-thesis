@@ -408,13 +408,18 @@ supported!}
   }
 }
 
+% NOTE: `everypage' is now deprecated, so I've replaced it with new built-in functionality.
+% https://ctan.mirrors.hoobly.com/macros/latex/contrib/everypage/everypage.pdf
+% https://stackoverflow.com/questions/64921954/how-to-solve-latex-package-warning-for-everypage
+% https://tex.stackexchange.com/questions/573329/so-what-is-the-everypage-package-replacement
+% 
 % Adding watermark in draft mode with time stamp
-\RequirePackage{everypage}
+% \RequirePackage{everypage}
 \RequirePackage[absolute]{textpos}
 % Default values for draft watermark
 \newcommand\draftposition{top}
 \newcommand\draftnodeanchor{1in+\voffset-\topmargin}
-\AddEverypageHook{%
+\AddToHook{shipout/background}{%
   \begin{textblock*}{\paperwidth}[0.,2.5](0\paperwidth,\draftnodeanchor)
     \DraftContent
   \end{textblock*}
@@ -431,7 +436,7 @@ supported!}
           using default value of top}
         \renewcommand\draftnodeanchor{1in+\voffset-\topmargin}}} %Top
 
-    \AddEverypageHook{%
+    \AddToHook{shipout/background}{%
     \begin{textblock*}{\paperwidth}[0.,2.5](0\paperwidth,\draftnodeanchor)
       \DraftContent
     \end{textblock*}
@@ -662,12 +667,13 @@ supported!}
 \fi
 
 % ************************ URL Package and Definition **************************
-\RequirePackage{url}
-% Redefining urlstyle to use smaller fontsize in References with URLs
-\newcommand{\url@leostyle}{%
- \@ifundefined{selectfont}{\renewcommand{\UrlFont}{\sffamily}}
- {\renewcommand{\UrlFont}{\normalsize}}}
-\urlstyle{leo}
+\RequirePackage[]{xurl} % Built on top of the url package but allows for breaking anywhere. Seems to work better.
+% \RequirePackage{url}
+% % Redefining urlstyle to use smaller fontsize in References with URLs
+% \newcommand{\url@leostyle}{%
+%  \@ifundefined{selectfont}{\renewcommand{\UrlFont}{\sffamily}}
+%  {\renewcommand{\UrlFont}{\normalsize}}}
+% \urlstyle{leo}
 
 % option to split urls over multiple lines for latex >> DVIPS >> PDF option
 \ifpdf
@@ -901,7 +907,7 @@ wish to left align your text}
 \newcommand{\@nomenclatureacronyms}{Acronyms / Abbreviations}
 \newcommand{\@nomenclaturesuperscripts}{Superscripts}
 \newcommand{\@nomenclaturesubscripts}{Subscripts}
-\newcommand{\@nomenclatureothers}{Other Symbols}
+\newcommand{\@nomenclatureothers}{Glossary}
 
 
 
@@ -1052,6 +1058,27 @@ wish to left align your text}
 
 % ******************************* Nomenclature *********************************
 \RequirePackage[intoc]{nomencl}
+
+% HACK for "Kopka Style" glossary.
+\@printpagereftrue
+\def\@@@nomenclature[#1]#2#3{%
+ \def\@tempa{#2}\def\@tempb{#3}%
+ \protected@write\@nomenclaturefile{}%
+  {\string\nomenclatureentry{#1\nom@verb\@tempa @[{\nom@verb\@tempa}]%
+    |nompageref{\begingroup\nom@verb\@tempb\protect\nomeqref{\theequation}}}%
+    {\thepage}}%
+ \endgroup
+ \@esphack}
+
+\def\nompageref#1#2{%
+  \if@printpageref\pagedeclaration{#2}\else\leavevmode\fi
+  \linebreak#1\nomentryend\endgroup}
+
+\def\pagedeclaration#1{\dotfill\nobreakspace#1}
+\def\nomentryend{.}
+\def\nomlabel#1{\emph{#1}\hfil}
+% END HACK
+
 \makenomenclature
 \renewcommand{\nomgroup}[1]{%
 \ifthenelse{\equal{#1}{A}}{\item[\textbf{\@nomenclatureromans}]}{% 

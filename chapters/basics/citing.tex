@@ -1,0 +1,55 @@
+% !TEX root = ../../thesis.tex
+
+\section{Citing \& Referencing}%
+\label{sec:basics-citing_and_referencing}%
+
+\subsection*{Citing External Works}%
+When citing external works, you must firstly add an entry to a \verb|.bib| file.
+This template includes \verb|mypubs.bib| for your own works and \verb|\references.bib| for other works.
+Once you have added an entry to a \verb|.bib| file, you are ready to cite it in text.
+
+By default, this template uses a custom bibliography style named \verb|ieeecustom| which derives from the original \verb|ieee| style.
+The only modification is that it uses \textit{Sentence Case Like This} rather than \textit{Regular case like this}.
+Feel free to change this in \verb|preamble.tex|.
+
+\begin{table}[!htbp]
+  \centering
+  \caption{A list of the most common citation commands.}%
+  \label{table:basics-citing_examples}
+  
+  \begin{tabular}{>{\raggedright\arraybackslash}p{0.55\linewidth} >{\raggedright\arraybackslash}p{0.35\linewidth}}
+    \textbf{Command} & \textbf{Example}\\
+    \toprule
+
+    \verb+Example~\cite{green_useoftools_2021}+ & Example~\cite{green_useoftools_2021}\\
+    \verb+\citeauthor*{green_useoftools_2021}+ & \citeauthor*{green_useoftools_2021}\\
+    \verb+\citeauthor{green_useoftools_2021}+ & \citeauthor{green_useoftools_2021}\\
+    \verb+\citeyear{green_useoftools_2021}+ & \citeyear{green_useoftools_2021}
+
+    \end{tabular}
+\end{table}
+
+Table~\ref{table:basics-citing_examples} shows several of the most common citation commands and an example of each.
+Take careful note of the \verb|~| symbol before \verb|\cite|.
+This character is a \textit{non-breaking space} which means that the word before it, in the above case ``Example'', will not be separated from the text that follows, in the above case the \verb|\cite| command.
+Practically, this means that you will never have a word and its citation separate from one another at a line break, for instance.
+It is important to note that \verb|~| \textbf{replaces} a regular space between the two, but visually appears identical; only its behavior changes.
+
+It is also possible insert a complete citation by using the \verb|\fullcite| command:
+
+\medskip
+
+\noindent\fullcite{green_useoftools_2021}
+
+
+\subsection*{Citing Internal Elements}%
+If you instead want to reference something \textbf{internal} to the document, such as a figure, table, or chapter and so on, then you will be using the \verb|\ref| command.
+
+If you look back at the tables, figures, and section headings in the \LaTeX{} code so far, you'll see liberal use of the \verb|\label| command.
+This is what creates an anchor that we can use \verb|\ref| to refer to.
+
+I may want to raise something discussed in Chapter~\ref{ch:introduction}, or a specific section such as \S\ref{sec:basics-formatting}.
+Tables and figures are exactly the same --- consider Table~\ref{table:basics-citing_examples} or Figure~\ref{fig:basics-skyrim_book}.
+
+Again note the use of \verb|~| as a non-breaking space before \verb|\ref|.
+The exception to this is when using the \verb|\S| command (\S), as that symbol typically does not have a space at all.

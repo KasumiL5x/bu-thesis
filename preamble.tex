@@ -1,49 +1,83 @@
 % !TEX root = ./thesis.tex
 
-% ****************************** Packages, Commands, Settings ******************************
+% ****************************** Intentionally blank pages ******************************
+% If you're using double-sided mode, chapters will start on a specific side possibly leaving a page blank.
+% This package adds text to that blank page to let the reader know it's not an error.
+% https://gist.github.com/philipptempel/5220000
+% https://www.tug.org/TUGboat/tb31-3/tb99merciadri.pdf
+\makeatletter
+    \def\cleardoublepage{\clearpage%
+        \if@twoside%
+            \ifodd\c@page\else
+                \vspace*{\fill}
+                \hfill
+                \begin{center}
+                This page is intentionally left blank.
+                \end{center}
+                \vspace{\fill}
+                \thispagestyle{empty}
+                \newpage
+                \if@twocolumn\hbox{}\newpage\fi
+            \fi
+        \fi
+    }
+\makeatother
+
+
+
+% ****************************** Smaller footnote URLs ******************************
+% Note that the style file sets its own custom value for this for references, so this will override it fully.
+% Not recommended to enable by default, but it's here if you need it.
+% \urlstyle{same}
+% \renewcommand{\UrlFont}{\footnotesize\ttfamily}
+
+
 
 % ****************************** Custom Margin ******************************
 % Use the document class option 'custommargin' to use this section.
 % Set {innerside, outerside, top, bottom} and other page dimensions.
 % Bournemouth standard is >=40mm for the bound edge and >=20mm for the rest.
 % If you use double sided printing, set the right to >=40mm too.
-\ifsetCustomMargin
+\ifsetCustomMargin%
   \RequirePackage[left=40mm,right=20mm,top=20mm,bottom=20mm]{geometry} % originally 40/25/35/30
-  \setFancyHdr % To apply fancy header after geometry package is loaded.
+  \setFancyHdr% To apply fancy header after geometry package is loaded.
 \fi
 
 
 
-
-% ****************************** Paragaph Spacing ******************************
-% Add spaces between paragaphs.
+% ****************************** Paragraph Spacing ******************************
+% Add spaces between paragraphs.
 % \setlength{\parskip}{0.5em}
 
 % Enabling ragged bottom avoids extra whitespaces between paragraphs.
-\raggedbottom
+\raggedbottom%
 
 % Use this to remove excess top spacing for enumerations, lists, and descriptions.
-% \usepackage{enumitem}
+\usepackage{enumitem}
 % \setlist[enumerate,itemize,description]{topsep=0em}
 
 
 
-
 % ****************************** Line Spacing ******************************
-% Pick the linespacing that suits your university guidelines.  Default is one-half line spacing.
-% \doublespacing
-% \onehalfspacing
-% \singlespacing
-
+% Pick the linespacing that suits your university guidelines. Default is one-half line spacing.
+% \singlespacing%
+\onehalfspacing%
+% \doublespacing%
 
 
 
 % ****************************** Custom Fonts ******************************
-% Use the document class option 'customfont' to use this section.  If you don't,a default LaTeX font will be used.
-\ifsetCustomFont
+% Use the document class option 'customfont' to use this section. If you don't,a default LaTeX font will be used.
+\ifsetCustomFont%
+  % This will use the font from  acmart.cls (JOCCH etc.). It's a nice standard publication font.
+  \RequirePackage[tt=false, type1=true]{libertine}
+  \RequirePackage[libertine]{newtxmath}
+
   % For example:
-  % 
+  %
   % \RequirePackage{helvet}
+  % \renewcommand{\familydefault}{\sfdefault}
+  % \setmainfont{cmss}
   % For use with XeLaTeX.
   % \setmainfont[
   %   Path           = ./libertine/opentype/,
@@ -60,33 +94,48 @@
 
 
 
+% ****************************** Footnotes ******************************
+% \usepackage[perpage]{footmisc} % Customizable footnote options (https://ctan.org/pkg/footmisc).
+
+% Replaces the standard \footnote{} command and places all footnotes at the END of a document, like in some books.
+% If you want footnotes to appear inline at the bottom of the page they are defined on, simply comment this out and rebuild.
+\usepackage{enotez}
+\setenotez{backref=true,totoc=chapter,split=chapter}
+\let\footnote=\endnote%
+
+
 
 % ****************************** Custom Packages ******************************
-% Here you can add your own custom packages and configure them.  The ones listed are common suggestions.
+% Here you can add your own custom packages and configure them. The ones listed are common suggestions.
 
 % \usepackage{algpseudocode} % Algorithms and pseudocode (https://ctan.org/pkg/algorithmicx).
 
 \RequirePackage[labelsep=space,tableposition=top]{caption} % Customize float captions (https://ctan.org/pkg/caption).
 \renewcommand{\figurename}{Fig.} % To support older versions of captions.sty.
 
-% \usepackage{rotating} % Rotation of figures and tables (https://ctan.org/pkg/rotating).
-% \usepackage{wrapfig} % Wrap text around figures and tables (https://ctan.org/pkg/wrapfig).
-
-% \usepackage{float} % Makes placing figures and tables easier.  In particular, [H] for exact placement (https://ctan.org/pkg/float).
-% \restylefloat{figure} % If you use the float package, enable this.
-
-\usepackage{subcaption} % Multiple captions within a figure (https://ctan.org/pkg/subcaption).
-
+% Packages related to figures or tables.
+\usepackage{subfig} % Multiple figures (supersedes the subfigure/subcaption package).
 \usepackage{booktabs} % Professional looking tables (https://ctan.org/pkg/booktabs).
 \usepackage{multirow} % Table cells that can span multiple rows (https://ctan.org/pkg/multirow).
-% \usepackage{multicol} % Table cells that can span multiple columns (https://ctan.org/pkg/multicol).
+\usepackage{multicol} % Table cells that can span multiple columns (https://ctan.org/pkg/multicol).
 % \usepackage{longtable} % Tables that can spread over multiple pages (https://ctan.org/pkg/longtable).
 % \usepackage{tabularx} % Extends tabular to include paragraph-like column expansion; tabulary also exists (https://ctan.org/pkg/tabularx).
+\usepackage{xltabular} % This combines tabularx, longtable, and ltablex.
+\usepackage{float} % Makes placing figures and tables easier. In particular, [H] for exact placement (https://ctan.org/pkg/float).
+\restylefloat{figure} % If you use the float package, enable this.
+\usepackage{wrapfig} % To have figures inline with text.
+\usepackage{makecell} % Custom linebreak cells etc.
+% \usepackage{rotating} % Rotation of figures and tables (https://ctan.org/pkg/rotating).
 
+% Other packages.
+\usepackage{lipsum} % For lorem ipsum placeholder text.
+\usepackage[final]{pdfpages} % To include full pdf documents (final forces inclusion even in draft mode).
+\usepackage[table]{xcolor} % Custom colors.
+\usepackage{csquotes} % Quotes.
+\usepackage{menukeys}[os=mac] % To print Apple keys in the appendix. Note that this breaks on Overleaf.
+\usepackage{changepage} % For the ability to change page margins in an environment.
+\usepackage{soul} % For extra formatting like strikethrough.
 \usepackage{siunitx} % Ability to use SI unit symbols (https://ctan.org/pkg/siunitx).
-
-% \usepackage[perpage]{footmisc} % Customizable footnote options (https://ctan.org/pkg/footmisc).
-
 
 
 
@@ -97,23 +146,32 @@
 
 
 
-
 % ****************************** References ******************************
 % Packages and settings relating to referencing.
 
 % \usepackage{cleveref} % Automatic referencing without explicitly stating fig/table (https://ctan.org/pkg/cleveref).
 
 % Use the document class option 'custombib' to use this section.
-\ifuseCustomBib
-   \RequirePackage[square, sort, numbers, authoryear]{natbib} % Provide your custom bib package here.  In this case, natbib.
-% If you would like to use biblatex for your reference management, as opposed to the default `natbibpackage` pass the option `custombib` in the document class. Comment out the previous line to make sure you don't load the natbib package. Uncomment the following lines and specify the location of references.bib file.
-% \RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=nty, natbib=true]{biblatex}
-% \bibliography{references/references} %Location of references.bib only for biblatex
+\ifuseCustomBib%
+  % This loads a custom version of the ieee style that I created (ieeecustom.bbx/cbx). It's the same as ieee, but uses sentence case for references.
+  % Without sentence case is "The best paper of all time". With sentence case is "The Best Paper of All Time".
+  % `sortcites` is for ordering multiple entries in a single cite by number.
+  \RequirePackage[backend=biber, style=ieeecustom, citestyle=ieeecustom, sorting=nty, dashed=false, abbreviate=false, maxnames=99, sortcites=true, backref=true]{biblatex}
+  % Add the biblatex reference files. Personal references are separated out into mypubs.bib for convenience.
+  \addbibresource{references/references.bib}
+  \addbibresource{references/mypubs.bib}
+
+  % Another example. Provide your custom bib package here. In this case, natbib.
+  % \RequirePackage[square, sort, numbers, authoryear]{natbib} 
+  % If you would like to use biblatex for your reference management, as opposed to the default `natbibpackage` pass the
+  %  option `custombib` in the document class. Comment out the previous line to make sure you don't load the natbib package.
+  %  Uncomment the following lines and specify the location of references.bib file.
+  % \RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=nty, natbib=true]{biblatex}
+  % \bibliography{references/references} % Location of references.bib only for biblatex.
 \fi
 
 % Changes the default 'Bibliography' name into 'References'.
 \renewcommand{\bibname}{References}
-
 
 
 
@@ -132,10 +190,15 @@
 % Changes the name of the nomenclature section.
 % \renewcommand{\nomname}{Symbols}
 
-% The default value of \appendixtocname and \appendixpagename is 'Appendices'.  These commands can change that.
+% The default value of \appendixtocname and \appendixpagename is 'Appendices'. These commands can change that.
 % \renewcommand{\appendixtocname}{List of appendices}
 % \renewcommand{\appendixname}{Appndx}
 
+% Custom date format for auto updating use in footnotes for 'as of', such as '[link] as of {\AsOfDate\today}'.
+\newdateformat{AsOfDate}{%
+\THEDAY\ \monthname[\THEMONTH]\ \THEYEAR%
+}
+\newcommand{\AsOfToday}{as of {\AsOfDate\today}}
 
 
 
@@ -143,31 +206,139 @@
 % Sets up options for draft mode (enable by using the draft option).
 
 % Uncomment to disable figures in draft mode.
-% \setkeys{Gin}{draft=true}  % Set draft to false to enable figures in draft mode.
+% \setkeys{Gin}{draft=true} % Set draft to false to enable figures in draft mode.
 
 % Set the watermark text.
 % \SetDraftText{DRAFT}
 
-% Set the watermark location.  Can use 'top' or 'bottom'.
-% \SetDraftWMPosition{bottom}
+% Set the watermark location. Can use 'top' or 'bottom'.
+\SetDraftWMPosition{bottom}
 
-% Set the version number for the draft.  Defaults to v1.0.
+% Set the version number for the draft. Defaults to v1.0.
 % \SetDraftVersion{v1.1}
 
-% Draft text grayscale value (where 0 is black and 1 is white).  Defaults to 0.75.
+% Draft text grayscale value (where 0 is black and 1 is white). Defaults to 0.75.
 % \SetDraftGrayScale{0.8}
-
 
 
 
 % ****************************** Todo Notes Settings ******************************
 % Uncomment the following lines to enable todonotes.
-% \ifsetDraft
-% 	\usepackage[colorinlistoftodos]{todonotes}
-% 	\newcommand{\mynote}[1]{\todo[author=kks32,size=\small,inline,color=green!40]{#1}}
+% \ifsetDraft%
+%   \usepackage[colorinlistoftodos]{todonotes}
+%   \newcommand{\mynote}[1]{\todo[author=Daniel,size=\small,inline,color=green!40]{#1}}
 % \else
-% 	\newcommand{\mynote}[1]{}
-% 	\newcommand{\listoftodos}{}
+%   \newcommand{\mynote}[1]{}
+%   \newcommand{\listoftodos}{}
 % \fi
-
 % Example todo: \mynote{Enter your note text here.}
+
+
+
+% ****************************** Custom Titles ******************************
+% titlesec package for configuring the headers. Requires xcolor package.
+\usepackage[]{titlesec} % Helpful options: bf, compact, explicit
+\definecolor{gray75}{gray}{0.75}
+\definecolor{chapterColor}{HTML}{000000}
+\definecolor{sectionColor}{HTML}{222222}
+\definecolor{subsectionColor}{HTML}{444444}
+\definecolor{subsubsectionColor}{HTML}{444444}
+
+% \chapter
+% Style 1:
+% \newcommand{\hsp}{\hspace{20pt}}
+% \titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+% Style 2:
+% \renewcommand{\thechapter}{\Roman{chapter}}
+% \titleformat{\chapter}[display]%
+%   {\bfseries\Large}%
+%   {\filleft\MakeUppercase{\chaptertitlename} \Huge\thechapter}%
+%   {4ex}%
+%   {\titlerule\vspace{2ex}\filright}[\vspace{2ex}\titlerule]
+% Style 3:
+\titleformat{\chapter}[display]%
+  {\normalfont\Large\filcenter\scshape\color{chapterColor}}%
+  {\titlerule[1pt]\vspace{1pt}\titlerule\vspace{0.5pc}\Huge\MakeUppercase{\chaptertitlename} \thechapter}%
+  {0.5pc}%
+  {\titlerule\vspace{0.5pc}\Huge}
+
+% \section
+\titleformat{\section}[hang]%
+  {\normalfont\scshape\Large\color{sectionColor}}%
+  {\thesection\hspace{10pt}}%
+  {0pt}%
+  {}
+
+% \subsection
+\titleformat{\subsection}[hang]%
+  {\normalfont\scshape\large\color{subsectionColor}}%
+  {\thesubsection\hspace{5pt}}%
+  {0pt}%
+  {}
+
+% \subsubsection
+\titleformat{\subsubsection}[hang]%
+  {\normalfont\normalsize\color{subsubsectionColor}}%
+  {\thesubsection\hspace{5pt}}%
+  {0pt}%
+  {}
+
+% Alternatively: \sffamily or \rmfamily or \scshape can be used.
+
+
+
+% ****************************** Code & Syntax Highlighting ******************************
+% If you want to include code snippets, then this is a good library.
+% An example below defines two languages.
+
+% With help from https://www.overleaf.com/latex/examples/listings-code-style-for-html5-css-html-javascript/htstpdbpnpmt.
+\usepackage[final]{listings}
+% Novella language syntax.
+\definecolor{CodeString}{HTML}{E6DB74}
+\definecolor{CodeComment}{HTML}{75715E}
+\definecolor{CodeKeyword1}{HTML}{F92672}
+\definecolor{CodeKeyword2}{HTML}{195CB3}
+\definecolor{CodeIdentifier}{HTML}{272822}
+\lstdefinelanguage{Novella}{
+  keywords={Variable,Entity,Tag,Group,Sequence,Event,Discoverable,Selector},
+  keywords=[2]{Void,Int,Boolean,Double,String,Tangibility,Functionality,Clarity,Delivery},
+  keywords=[3]{Type},
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  alsoletter={:},
+  alsodigit={-}
+}
+\lstdefinestyle{Novella}{
+  % basicstyle={\footnotesize\ttfamily},
+  basicstyle={\footnotesize\fontfamily{pcr}}, % Courier (https://www.overleaf.com/learn/latex/Font_typefaces).
+  identifierstyle=\color{CodeIdentifier},
+  keywordstyle=\color{CodeKeyword1} \bfseries,
+  keywordstyle=[2]\color{CodeKeyword2}\bfseries,
+  keywordstyle=[3]\bfseries\underbar,
+  stringstyle=\color{CodeString}\ttfamily,
+  commentstyle=\color{CodeComment}\ttfamily,
+  language=Novella
+}
+
+% VERY limited HyperTalk syntax.
+\definecolor{HTCodeKeyword1}{HTML}{19177C}
+\definecolor{HTCodeKeyword2}{HTML}{008000}
+\definecolor{HTCodeString}{HTML}{BA2121}
+\lstdefinelanguage{HyperTalk}{
+  keywords={ask,into,card,field},
+  keywords=[2]{put,it},
+  morestring=[b]",
+  showstringspaces=false
+}
+\lstdefinestyle{HyperTalk}{
+  % basicstyle={\footnotesize\ttfamily},
+  basicstyle={\footnotesize\fontfamily{pcr}}, % Courier (https://www.overleaf.com/learn/latex/Font_typefaces).
+  identifierstyle=\color{CodeIdentifier},
+  keywordstyle=\color{HTCodeKeyword1}\bfseries,
+  keywordstyle=[2]\color{HTCodeKeyword2}\bfseries,
+  stringstyle=\color{HTCodeString}\ttfamily,
+  language=HyperTalk
+}

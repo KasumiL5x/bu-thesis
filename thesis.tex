@@ -5,7 +5,17 @@
 % 
 % See the original README.md for information on how to use the template, including
 % the variety of options available for this document class.
-\documentclass[a4paper,12pt,times,numbered,print,index,oneside,custommargin]{PhDThesisPSnPDF}
+\documentclass[a4paper,12pt,customfont,custommargin,custombib,oneside,draft,PageStyleI]{PhDThesisPSnPDF}
+% [draft] Draft mode (line numbers, watermarks)
+% [print] Turns off colored links and possibly some other features that paper cannot do.
+% [oneside] Single-sided (combine with print turned off).
+% [twoside] Double-sided (combine with print turned on; chapters start on left page and add blank pages to allow this).
+% 
+% Final online version:
+% \documentclass[a4paper,12pt,customfont,custommargin,custombib,oneside,PageStyleI]{PhDThesisPSnPDF}
+% 
+% Final print version:
+% \documentclass[a4paper,12pt,customfont,custommargin,custombib,twoside,PageStyleI]{PhDThesisPSnPDF}
 
 
 % ****************************** Preamble ******************************
@@ -21,7 +31,7 @@
 % ****************************** Abstract Only ******************************
 % If using the 'abstract' document class option, only the titlepage and abstract will print out.
 % This section lets you include what is printed when this option is enabled.
-\ifdefineAbstract
+\ifdefineAbstract%
  \pagestyle{empty}
  \includeonly{front/declaration, front/abstract}
 \fi
@@ -30,8 +40,8 @@
 % ****************************** Chapters Only ******************************
 % If using the 'chapter' document class option, only specific chapters and references are printed.
 % This section lets you include what is printed when this option is enabled.
-\ifdefineChapter
- \includeonly{chapter3/chapter3}
+\ifdefineChapter%
+ \includeonly{chapters/compiling/compiling}
 \fi
 
 
@@ -39,7 +49,7 @@
 
 
 % ****************************** Front Matter ******************************
-% Everything before your actual work begins.  This follows Bournemouth's suggestion (which is not fixed).
+% Everything before your actual work begins. This follows Bournemouth's suggestion (which is not fixed).
 \frontmatter
 \maketitle
 \include{front/copyright} % Required by Bournemouth to come instantly after the titlepage.
@@ -49,17 +59,19 @@
 \listoftables
 \include{front/acknowledgement}
 \include{front/declaration}
-\printnomenclature % You can add spacing between symbols and descriptions using [3em] etc.
+\printnomenclature% You can add spacing between symbols and descriptions using [3em] etc.
 \include{front/dedication}
 
 
 % ****************************** Main Matter ******************************
-% This is where your actual work starts.  \mainmatter sets everything up.  Include your chapters after this.
-\mainmatter
+% This is where your actual work starts. \mainmatter sets everything up.
+\mainmatter%
 
-\include{chapter1/chapter1}
-\include{chapter2/chapter2}
-\include{chapter3/chapter3}
+% This is where you put your chapters. I split my chapters into files for organization. Below, they are included in the document.
+% Notice how you don't need the file extension!
+\include{chapters/introduction/introduction}
+\include{chapters/basics/basics}
+\include{chapters/compiling/compiling}
 
 
 % ****************************** Back Matter ******************************
@@ -70,24 +82,32 @@
 % ****************************** Bibliography ******************************
 % This is where your references are configured and printed.
 \begin{spacing}{0.9}
-\bibliographystyle{apalike} % [1] etc.
-%\bibliographystyle{unsrt} % Use for unsorted references.
-%\bibliographystyle{plainnat} % Use this to have URLs listed in references.
-\cleardoublepage
-\bibliography{references/references} % Path to your References.bib file.
+  % An optional line break fix here instead of in preamble as it can apparently break formatting (https://tex.stackexchange.com/a/172000).
+  \setlength{\emergencystretch}{1em}%
+  \printbibliography[heading=bibintoc, title={References}]
+
+  % Alternatively, if not using a custom bib. Choose one bibliographystyle.
+  % \bibliographystyle{apalike} % [1] etc.
+  % \bibliographystyle{unsrt} % Use for unsorted references.
+  % \bibliographystyle{plainnat} % Use this to have URLs listed in references.
+  % \cleardoublepage
+  % \bibliography{references/references} % Path to your References.bib file.
 \end{spacing}
 
 
 % ****************************** Appendices ******************************
 % Your extra appendices following references are listed here.
 \begin{appendices}
-\include{appendix1/appendix1}
-\include{appendix2/appendix2}
+\include{appendices/appendix1}
 \end{appendices}
+
+% ****************************** Footnotes ******************************
+% Comment this out if you don't have footnotes at the end (see preamble.tex).
+\printendnotes%
 
 
 % ****************************** Index ******************************
 % If you have an index, print it here.
-\printthesisindex
+\printthesisindex%
 
 \end{document}

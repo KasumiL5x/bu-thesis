@@ -1,0 +1,80 @@
+% !TEX root = ../../thesis.tex
+
+\section{Formatting}%
+\label{sec:basics-formatting}%
+
+Formatting text in \LaTeX{} is easy, for the most part.
+You can make text \textbf{bold} by wrapping it in \verb|\textbf{}|.
+You can make text \textit{italic} by wrapping it in \verb|\textit{}|.
+You can \underline{underline} text by wrapping it in \verb|\underline{}|.
+These can of course be \textbf{\textit{\underline{combined}}} together.
+
+It is important to be aware that \verb|\textit{}| and \verb|\emph{}| almost always act similar, but in fact do different things in different contexts.
+In short, \verb|\emph{}| behaves differently as you nest it in different commands, and some packages may in fact change its behavior.
+If you want something that's \textit{definitely} italic, stick with \verb|\textit{}|.
+
+This thesis template also uses the \texttt{soul} package which extends the formatting options you have available.
+For example, we can \st{strike through} text by wrapping it in \verb|\st{}|.
+
+It is also worth noting that many special characters in \LaTeX{} have reserved meanings, so you cannot use them verbatim.
+Consider, for example, the ampersand (\&), percent (\%), and dollar (\$) symbols.
+These characters must be \textit{escaped} by placing a backslash (\textbackslash) before them.
+In this case, we would write \verb|\&|, \verb|\%|, and \verb|\$|.
+
+\subsection{Quotes}%
+You should \textbf{never} use double quotes directly within \LaTeX{} to wrap quoted text.
+Instead, you should insert backticks to the left of the quote, and apostrophes to the right (see \verb|formatting.tex|).
+These can both stack indefinitely, so add them to your heart's content!
+
+For example, ``this quote has two backticks before it and two apostrophes after it'' whereas `this quote only has one either side'.
+We can also display block quotes as follows:
+
+\begin{displayquote}[][]
+  ``This block of text is displayed centered on the page and represents a chonkier block of text than you'd typically quote inline. Here is some more filler text to make this quote much longer. Significantly longer. In fact, so long that I'm not quite sure what to add here other than these padding words.'' 
+\end{displayquote}
+
+\subsection{Lists}%
+Use the \verb|enumerate| environment to list things by number.
+
+\begin{enumerate}[noitemsep,topsep=0pt]
+  \item Items within enumerate blocks are numbered automatically.
+  \item By default, this starts at 1, but it can be configured with the \texttt{enumitem} package.
+  \item There's no limit to the length of these, as long as they are one line.
+\end{enumerate}
+
+\vspace{5pt}
+
+\noindent Use the \verb|itemize| environment to list arbitrary things by bullet point.
+
+\begin{itemize}[noitemsep,topsep=0pt]
+  \item This is an example bullet point.
+  \item So is this one.
+  \item And this one!
+\end{itemize}
+
+\vspace{5pt}
+
+\noindent You can use the \verb|description| environment to list items with descriptions, although I usually tend to do this by hand.
+
+\begin{description}[noitemsep,topsep=0pt]
+  \item[The Title] A short description that follows.
+  \item[Another Title] This can be any length, as long as it's one line.
+\end{description}
+
+\vspace{5pt}
+
+\noindent These environments can be nested and configured quite deeply, so do look them up!
+
+\subsection{Footnotes}%
+You can add footnotes to any text by using the \verb|\footnote{}| command.
+Do \textbf{not} add a space before the command as a superscript number will be inserted in its place.
+
+By default, this thesis template will place all footnotes at the \textbf{end} of the document, delineated by which chapter they appear in.
+This is a personal preference and some people prefer to see them on the same page at the bottom.
+I dislike having them on the same page as they can begin to take up some serious space and introduce formatting oddities, whereas when they are at the end of the document, their length and quantity really doesn't matter.
+Look at \verb|preamble.tex| for more information on how to toggle between these two modes.
+
+Here are several examples of footnotes.
+Popular search engines include Google\footnote{Available at \url{https://www.google.com}.}, Bing\footnote{Available at \url{https://www.bing.com}.}, and DuckDuckGo\footnote{Available at \url{https://duckduckgo.com}.}.
+Also note that this template includes a custom \verb|\AsOfToday| command that you can use to automatically specify `today' when building your document.
+It is helpful for specifying when a link was last valid, for example\footnote{Imagine I'm talking about an amazing website available at \url{www.website.com} \AsOfToday.}.

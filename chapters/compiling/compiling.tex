@@ -1,0 +1,31 @@
+% !TEX root = ../../thesis.tex
+
+\chapter{Compiling Your Thesis}%
+\label{ch:compiling}%
+
+% NEW CHAPTER:
+% Getting started with this document.
+%   - Deleting everything and starting fresh.
+%   - Compiling with the bat/sh files.
+
+Several shell/batch scripts are included in the root folder to aid in compiling your thesis.
+They all internally use the \textbf{latexmk} build tool.
+You can open the files for more details.\\
+
+\noindent You can run \textbf{build-final.sh/.bat} to completely rebuild your thesis from scratch.
+This will clean your project folder of temporary files, build the project once, build the index for nomenclature, and build the project again.
+The result is a PDF that's guaranteed to be the latest reflection of your \LaTeX{} code, but it is the slowest approach.\\
+
+\noindent If you have already compiled your thesis and want to see iterative changes, like changing the body of the document, and you don't care about rebuilding the nomenclature, you can use \textbf{build-once.sh/.bat}.
+Note that this does not recreate your PDF from scratch, so it is faster.
+However, if you suspect that your changes are not being reflected in the PDF, then try the above \textbf{build-final.sh/.bat} script instead.\\
+
+\noindent The \textbf{build-fresh.sh/.bat} script is the same as \textbf{build-once.sh/.bat}, but it instructs \textbf{latexmk} to always process all files even if they didn't change.\\
+
+\noindent The \textbf{build-clean.sh/.bat} script tells \textbf{latexmk} to clean all temporary files that it creates during compilation.
+You can use this to clean up your project directory, but it will require a full rebuild next time.\\
+
+\noindent If you already have a build of your thesis and want to manually rebuild the index for nomenclature, you can use \textbf{build-index.sh/.bat}.
+Note that you'll need to rebuild again after this to see the changes in the PDF.\\
+
+\noindent There is also a legacy \textbf{compile-thesis.sh/.bat} script you can look at which uses \textbf{pdflatex} directly.

@@ -1,0 +1,28 @@
+% !TEX root = ../../thesis.tex
+
+\section{Structure}%
+\label{sec:basics-structure}%
+
+\LaTeX{} can organize and number your document automatically with several sectioning commands.
+From the highest to the lowest, the commands are:
+
+\begin{itemize}[noitemsep,left=1pt]
+  \item \verb|\part{name}|
+  \item \verb|\chapter{name}|
+  \item \verb|\section{name}|
+  \item \verb|\subsection{name}|
+  \item \verb|\subsubsection{name}|
+  \item \verb|\paragraph{name}|
+  \item \verb|\subparagraph{name}|
+\end{itemize}
+
+\noindent In your thesis, you are likely to only use \verb|\chapter|, \verb|\section|, \verb|\subsection|, and \verb|\subsubsection|.
+The file \verb|basics.tex| defines a chapter, which is represented above by ``Chapter 2''.
+This file, \verb|structure.tex|, defines a section, which is represented above as ``2.1''.
+When we add subsections, they would be represented as ``2.1.1'' and so on.
+
+The style of these sectioning commands has been customized for this thesis. Look for ``Custom Titles'' in \verb|preamble.tex| for more information.
+
+\subsection*{Unnumbered Sectioning}%
+This subsection is not listed in the table of contents and doesn't have a number.
+You can achieve this with any of the sectioning commands by appending them with an asterisk.

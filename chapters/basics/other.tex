@@ -1,0 +1,74 @@
+% !TEX root = ../../thesis.tex
+
+\section{Other Tips}%
+\label{sec:basics-other}%
+
+\subsection{Dummy Text / Lipsum}%
+If you're blocking out structure and want some filler text, you can use the \verb|\lipsum| command.
+Make sure to look up the package documentation on ctan\footnote{\url{https://www.ctan.org/pkg/lipsum}} as it's very flexible.
+
+\lipsum[4]
+
+
+\subsection{Code Snippets}%
+This template uses the \verb|listings| package for inserting code snippets both inline and as blocks/figures.
+Again, check the documentation on ctan, which I recommend any time you have questions about a package.
+
+\begin{lstlisting}[language=c++, numbers=left, caption={Checking if a number is even using bit magic.}]
+bool isEven( const unsigned int uValue ) {
+  return (uValue & (uValue - 1)) == 0;
+}
+\end{lstlisting}
+
+An alternative package to try is \verb|minted| which you may prefer over \verb|listings|.
+It is not included in this template, so you will have to include it manually.
+
+
+\subsection{Local Environment}%
+I do not recommend using Overleaf for your thesis, but instead recommend setting up a local development environment.
+This is because you are likely to hit the compilation time limit on Overleaf at some point late in your thesis, and switching environments last second could be a significant disturbance.
+Moreover, in my own thesis I've used several advanced features or packages that outright crash Overleaf.
+On the flip side, I do recommend having a blank version of this template on Overleaf so that you can quickly play around with formatting (such as building a complex table) and get instant feedback on errors and visuals.
+
+To get \LaTeX{} on your machine, you can visit the main \LaTeX{} download page at \url{https://www.latex-project.org/get} and choose your operating system appropriately.
+Personally, I use MiKTeX\footnote{\url{https://miktex.org}} on Windows and MacTeX\footnote{\url{https://www.tug.org/mactex}} on Mac.
+
+To actually write \LaTeX{}, I use \textit{Visual Studio Code} with several helpful plugins.
+I recommend using \textit{Better Comments} (colored comments to help make notes easier to find), \textit{LaTeX Workshop} (for mature LaTeX support), and \textit{Todo Tree} (to make ``TODO:'' comments stand out and findable in a list).
+
+
+\subsection{Version Control}%
+I recommend that you store your thesis in some kind of version control such as git.
+You will inevitably want to go back and see previous versions of your document, and this is a great way of doing so.
+
+You may have noticed looking through these documents that I have a \textbf{single} sentence per line.
+This is intentional.
+If you have a gigantic paragraph per line and you change even a single character, the entire line becomes modified, which makes detecting what changed quite hard.
+If you instead have a line per sentence, then this makes it easier to find changes as they happen.
+
+\subsection{Nomenclature}
+Nomenclature lets you define a glossary of terms at the start of your document.
+See the \LaTeX{} source here for how to define them.
+Note that seeing changes to nomenclature requires building an index.
+See \S\ref{ch:compiling} for more details.
+
+% See the `nomencl' package documentation for details (https://www.ctan.org/pkg/nomencl).
+\nomenclature[z-ALU]{ALU}{Arithmetic Logic Unit}
+\nomenclature[z-BEM]{BEM}{Boundary Element Method}
+\nomenclature[z-CFD]{CFD}{Computational Fluid Dynamics}
+\nomenclature[z-CK]{CK}{Carman - Kozeny}
+\nomenclature[z-DEM]{DEM}{Discrete Element Method}
+\nomenclature[z-FEM]{FEM}{Finite Element Method}
+\nomenclature[z-FLOP]{FLOP}{Floating Point Operations}
+\nomenclature[z-FPU]{FPU}{Floating Point Unit}
+\nomenclature[z-FVM]{FVM}{Finite Volume Method}
+\nomenclature[z-GPU]{GPU}{Graphics Processing Unit}
+\nomenclature[z-LBM]{LBM}{Lattice Boltzmann Method}
+\nomenclature[z-LES]{LES}{Large Eddy Simulation}
+\nomenclature[z-MPM]{MPM}{Material Point Method}
+\nomenclature[z-MRT]{MRT}{Multi-Relaxation Time}
+\nomenclature[z-PCI]{PCI}{Peripheral Component Interconnect}
+\nomenclature[z-PFEM]{PFEM}{Particle Finite Element Method}
+\nomenclature[z-RVE]{RVE}{Representative Elemental Volume}
+\nomenclature[z-SH]{SH}{Savage Hutter}
+\nomenclature[z-SM]{SM}{Streaming Multiprocessors}

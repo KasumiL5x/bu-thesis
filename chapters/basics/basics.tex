@@ -1,0 +1,30 @@
+% !TEX root = ../../thesis.tex
+
+\chapter{The Uber Basics of \LaTeX{}}%
+\label{ch:basics}%
+\graphicspath{{chapters/basics/figures/}}
+
+This chapter will briefly expose you to the basics.
+It is not a replacement for looking things up online, so make sure you do that too.
+I particularly like \url{https://www.overleaf.com/learn} as it is quite digestible.
+Make sure you're reading through the actual source files at the same time, as I have left practical comments explaining in more detail than you see here.
+
+I recommend you start by opening \verb|thesis.tex| which is the main file of this template.
+Take note of the \verb|\documentclass| command at the top which provides many options for how your document looks.
+By default, this template is setup for one-sided A4 paper, 12pt font, a custom font, custom margins, a custom bibliography style, a specific type of heading on each page, and has draft mode turned on (which is why you see line numbers in the margins and a watermark in the footer).
+I have included the configurations that I used for my online and print thesis submission variations.
+
+% My personal structure is to have a 'main' file for each chapter, in this case `basics.tex', which then
+% includes several other files, one for each section (we will get to structure later on).
+% I recommend this method as once your thesis becomes large, having monolithic files can be difficult to manage.
+
+% This is how you directly paste a file into another file.
+% ! IMPORTANT NOTE !
+% See how this is `input` rather than `include` in thesis.tex? There's an extremely important difference.
+% Using `include` will ensure the included content starts on a NEW page. That is, if you're one line over a page and use `include`, it will skip the rest of that page entirely.
+% Using `input` will treat it as if you just copy and pasted the file's contents here, not skipping anything.
+\input{chapters/basics/structure}
+\input{chapters/basics/formatting}
+\input{chapters/basics/figurestables}
+\input{chapters/basics/citing}
+\input{chapters/basics/other}

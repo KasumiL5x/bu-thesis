@@ -1,0 +1,33 @@
+% !TEX root = ../../thesis.tex
+
+% I recommend having a separate 'main file' for each chapter.
+% In this case, the 'Introduction' chapter lives in [chapters/introduction/introduction.tex].
+\chapter{Introduction}%
+
+% This command sets a name that we can later refer to (e.g., See Chapter~\ref{ch:introduction}).
+% It's a good idea to have them, but they aren't required.
+% While not required at all, here are my own personal rules for naming labels:
+% All label names are in the format `category:name`.
+% The `name` portion should be a hierarchy from the chapter down through sections if sections are labeled too to the element.
+%  They should be separated by hyphens to allow for underscores in individual names. (e.g., ch-sec-fig_name).
+% The `category` portion should be a category as follows:
+% 	 Chapter: ch
+% 	 Section: sec
+% Subsection: subsec
+% 	Appendix: appdx
+% 	   Table: table
+% 	  Figure: fig
+\label{ch:introduction}%
+
+% This sets the root folder for your graphics for THIS chapter. In this case, [chapters/introduction/figures].
+% It stops bloating of a single 'figures' folder and helps to separate them out.
+\graphicspath{{chapters/introduction/figures/}}
+
+Welcome! Here is a brief description of what \LaTeX{} is.
+
+\LaTeX{} is a document preparation system for the \TeX{} typesetting program.
+It offers programmable desktop publishing features and extensive facilities for automating most aspects of typesetting and desktop publishing, including numbering and cross-referencing, tables and figures, page layout, bibliographies, and much more.
+\LaTeX{} was originally written in 1984 by Leslie Lamport and has become the dominant method for using \TeX{}; few people write in plain \TeX{} anymore.
+The current version is \LaTeXe{}.
+
+The remainder of this document will briefly expose you to the basics of \LaTeX{}.
